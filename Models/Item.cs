@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Gerenciador_de_Notas_Fiscais.Models
 {
-
 
     [Table("Item")]
     public class Item
@@ -14,7 +12,7 @@ namespace Gerenciador_de_Notas_Fiscais.Models
         public int IdItem { get; set; }
 
         [Column("Produto")]
-        public string Produto { get; set; }
+        public required string Produto { get; set; }
 
         [Column("Valor")]
         public decimal Valor { get; set; }

@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Gerenciador_de_Notas_Fiscais.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<NotaFiscalContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("NotaFiscalContext") ?? throw new InvalidOperationException("Connection string 'NotaFiscalContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,10 +24,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
